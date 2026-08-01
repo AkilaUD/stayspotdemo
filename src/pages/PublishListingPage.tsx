@@ -114,7 +114,7 @@ export function PublishListingPage() {
         </p>
         <p className="mt-1 text-sm text-muted">
           Starter includes one live+pending ad. Need more properties?{' '}
-          <Link to="/pricing" className="font-semibold text-accent no-underline">
+          <Link to="/pricing" className="font-semibold text-accent-text no-underline">
             See Growth
           </Link>
           .
@@ -338,7 +338,7 @@ export function PublishListingPage() {
               type="file"
               accept="image/png,image/jpeg"
               multiple
-              className="cursor-pointer file:mr-3 file:rounded-md file:border-0 file:bg-accent/15 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-[#8a5a18]"
+              className="cursor-pointer file:mr-3 file:rounded-md file:border-0 file:bg-accent/15 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-accent-text"
               onChange={(e) => setFiles(e.target.files)}
             />
             {files && files.length > 0 && (

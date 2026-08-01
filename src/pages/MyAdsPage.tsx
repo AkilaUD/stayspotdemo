@@ -197,7 +197,7 @@ export function MyAdsPage() {
                 to="/pricing"
                 className={cn(
                   buttonVariants({ variant: 'primary', size: 'sm' }),
-                  'bg-accent text-[#132A22] hover:brightness-105',
+                  'bg-accent text-on-accent hover:brightness-105',
                 )}
               >
                 {subscription.slotsRemaining === 0
@@ -292,7 +292,7 @@ export function MyAdsPage() {
               to="/advertiser/publish"
               className={cn(
                 buttonVariants({ variant: 'primary' }),
-                'bg-accent text-[#132A22] hover:brightness-105',
+                'bg-accent text-on-accent hover:brightness-105',
               )}
             >
               Publish your first boarding place

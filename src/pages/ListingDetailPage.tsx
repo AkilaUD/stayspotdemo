@@ -211,7 +211,7 @@ export function ListingDetailPage() {
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
       <Link
         to="/browse"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted no-underline hover:text-accent"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted no-underline hover:text-accent-text"
       >
         <ArrowLeft className="h-4 w-4" aria-hidden />
         Back to search
@@ -405,7 +405,7 @@ export function ListingDetailPage() {
                   to={loginWithNext(`/listings/${id}`)}
                   className={cn(
                     buttonVariants({ variant: 'primary' }),
-                    'w-full bg-accent text-[#132A22] hover:brightness-105',
+                    'w-full bg-accent text-on-accent hover:brightness-105',
                   )}
                 >
                   Sign in to view contact
@@ -420,7 +420,7 @@ export function ListingDetailPage() {
                 <Button
                   type="button"
                   loading={busy}
-                  className="w-full bg-accent text-[#132A22] hover:brightness-105"
+                  className="w-full bg-accent text-on-accent hover:brightness-105"
                   onClick={() => void reveal()}
                 >
                   {busy ? 'Unlocking…' : 'Reveal phone & address'}
@@ -466,7 +466,7 @@ export function ListingDetailPage() {
               <CardContent>
                 <p className="mb-4 text-sm text-muted">
                   Message the landlord first — then open WhatsApp from{' '}
-                  <Link to="/inbox" className="font-semibold text-accent">
+                  <Link to="/inbox" className="font-semibold text-accent-text">
                     My inquiries
                   </Link>{' '}
                   (rate-limited).
@@ -498,7 +498,7 @@ export function ListingDetailPage() {
                     <Button
                       type="submit"
                       loading={busy}
-                      className="bg-accent text-[#132A22] hover:brightness-105"
+                      className="bg-accent text-on-accent hover:brightness-105"
                     >
                       {busy ? 'Sending…' : 'Send inquiry'}
                     </Button>
@@ -520,7 +520,7 @@ export function ListingDetailPage() {
                 {!seekerSub?.isPremium ? (
                   <p className="text-sm text-muted">
                     Viewing slots are a Plus/Pro feature.{' '}
-                    <Link to="/pricing" className="font-semibold text-accent">
+                    <Link to="/pricing" className="font-semibold text-accent-text">
                       Upgrade
                     </Link>
                   </p>

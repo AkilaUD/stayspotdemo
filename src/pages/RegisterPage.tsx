@@ -211,7 +211,7 @@ export function RegisterPage() {
             )}
             <p className="mt-5 text-center text-sm text-muted">
               Already registered?{' '}
-              <Link to="/login" className="font-semibold text-accent">
+              <Link to="/login" className="font-semibold text-accent-text">
                 Sign in
               </Link>
             </p>

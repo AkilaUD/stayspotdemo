@@ -32,7 +32,7 @@ export function TrustStrip({
               ·
             </span>
           )}
-          <Icon className="h-3.5 w-3.5 shrink-0 text-accent" aria-hidden />
+          <Icon className="h-3.5 w-3.5 shrink-0 text-accent-text" aria-hidden />
           <span>{label}</span>
         </li>
       ))}
@@ -70,7 +70,7 @@ export function NextStepPanel({
         onClick={action.onClick}
         className={
           useAccent
-            ? 'bg-accent text-[#132A22] hover:brightness-105'
+            ? 'bg-accent text-on-accent hover:brightness-105'
             : undefined
         }
       >

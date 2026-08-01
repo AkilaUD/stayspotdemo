@@ -87,7 +87,7 @@ export function LandingNav() {
               ) : (
                 <Link
                   to="/browse"
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-3 py-2 text-sm font-bold text-[#132A22] no-underline"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-3 py-2 text-sm font-bold text-on-accent no-underline"
                 >
                   <Search className="h-3.5 w-3.5" aria-hidden />
                   Find a room
@@ -105,7 +105,7 @@ export function LandingNav() {
             <>
               <Link
                 to="/browse"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-3 py-2 text-sm font-bold text-[#132A22] no-underline shadow-sm transition hover:brightness-105"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-3 py-2 text-sm font-bold text-on-accent no-underline shadow-sm transition hover:brightness-105"
               >
                 <Search className="h-3.5 w-3.5" aria-hidden />
                 Find a room

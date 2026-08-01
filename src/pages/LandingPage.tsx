@@ -177,7 +177,7 @@ export function LandingPage() {
                 className="mt-3 max-w-2xl font-display text-2xl font-semibold leading-snug text-white sm:text-3xl md:text-4xl"
               >
                 Your next boarding is one{' '}
-                <span className="inline-block rounded-md bg-white px-2 py-0.5 text-[#132A22] sm:px-2.5">
+                <span className="inline-block rounded-md bg-white px-2 py-0.5 text-on-accent sm:px-2.5">
                   search
                 </span>{' '}
                 away.
@@ -192,7 +192,7 @@ export function LandingPage() {
               <motion.p
                 variants={staggerItem}
                 transition={softTransition}
-                className="mt-5 text-sm text-white/65"
+                className="mt-5 text-sm text-white/85"
               >
                 Ads go live only after review · Contact gated · No rent escrow
               </motion.p>
@@ -214,7 +214,7 @@ export function LandingPage() {
         <MotionSection className="band-warm mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
           <div className="grid items-center gap-8 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-text">
                 Why StaySpot
               </p>
               <h2 className="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
@@ -274,7 +274,7 @@ export function LandingPage() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-text">
                   Featured places
                 </p>
                 <h2 className="mt-2 font-display text-3xl font-bold text-ink">
@@ -283,7 +283,7 @@ export function LandingPage() {
               </div>
               <Link
                 to="/browse"
-                className="text-sm font-bold text-accent no-underline hover:underline"
+                className="text-sm font-bold text-accent-text no-underline hover:underline"
               >
                 Browse all →
               </Link>
@@ -296,7 +296,7 @@ export function LandingPage() {
             {!listError && listings.length === 0 && (
               <p className="mt-8 text-muted">
                 No approved listings yet.{' '}
-                <Link to="/browse" className="font-semibold text-accent">
+                <Link to="/browse" className="font-semibold text-accent-text">
                   Open browse
                 </Link>{' '}
                 or list the first room.
@@ -324,7 +324,7 @@ export function LandingPage() {
                     <h3 className="mt-3 font-display text-xl font-semibold text-ink">
                       <Link
                         to={`/listings/${l.id}`}
-                        className="text-ink no-underline group-hover:text-accent"
+                        className="text-ink no-underline group-hover:text-accent-text"
                       >
                         {l.title}
                       </Link>
@@ -341,7 +341,7 @@ export function LandingPage() {
                     <TrustStrip dense className="mt-3" />
                     <Link
                       to={`/listings/${l.id}`}
-                      className="mt-4 inline-flex rounded-xl bg-accent px-4 py-2 text-sm font-bold text-[#132A22] no-underline transition hover:brightness-105"
+                      className="mt-4 inline-flex rounded-xl bg-accent px-4 py-2 text-sm font-bold text-on-accent no-underline transition hover:brightness-105"
                     >
                       View details
                     </Link>
@@ -388,7 +388,7 @@ export function LandingPage() {
                 type="button"
                 className={`rounded-full px-4 py-2 text-sm font-bold ${
                   track === 'renter'
-                    ? 'bg-accent text-[#132A22]'
+                    ? 'bg-accent text-on-accent'
                     : 'text-white/80'
                 }`}
                 onClick={() => setTrack('renter')}
@@ -399,7 +399,7 @@ export function LandingPage() {
                 type="button"
                 className={`rounded-full px-4 py-2 text-sm font-bold ${
                   track === 'landlord'
-                    ? 'bg-accent text-[#132A22]'
+                    ? 'bg-accent text-on-accent'
                     : 'text-white/80'
                 }`}
                 onClick={() => setTrack('landlord')}
@@ -463,7 +463,7 @@ export function LandingPage() {
                     />
                   </div>
                   <div className="p-5">
-                    <span className="font-display text-3xl font-bold text-accent">
+                    <span className="font-display text-3xl font-bold text-accent-text">
                       {s.n}
                     </span>
                     <h3 className="mt-2 font-display text-xl font-semibold">
@@ -478,7 +478,7 @@ export function LandingPage() {
               {track === 'renter' ? (
                 <Link
                   to="/browse"
-                  className="inline-flex rounded-xl bg-accent px-5 py-3 text-sm font-bold text-[#132A22] no-underline transition hover:brightness-105"
+                  className="inline-flex rounded-xl bg-accent px-5 py-3 text-sm font-bold text-on-accent no-underline transition hover:brightness-105"
                 >
                   Explore rooms
                 </Link>
@@ -496,7 +496,7 @@ export function LandingPage() {
 
         {/* Plans */}
         <MotionSection id="plans" className="band-warm mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-text">
             Landlord packages
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
@@ -549,7 +549,7 @@ export function LandingPage() {
                     to={plan.isFree ? '/register?role=ADVERTISER' : '/pricing'}
                     className={`mt-5 rounded-lg px-4 py-2.5 text-center text-sm font-bold no-underline ${
                       recommended
-                        ? 'bg-accent text-[#132A22]'
+                        ? 'bg-accent text-on-accent'
                         : 'bg-base text-ink ring-1 ring-line'
                     }`}
                   >
@@ -562,7 +562,7 @@ export function LandingPage() {
           {plans.length === 0 && (
             <p className="mt-6 text-muted">
               Plans load from the API. See{' '}
-              <Link to="/pricing" className="font-semibold text-accent">
+              <Link to="/pricing" className="font-semibold text-accent-text">
                 /pricing
               </Link>
               .
@@ -573,7 +573,7 @@ export function LandingPage() {
         {/* Belonging */}
         <MotionSection className="band-presence border-y border-[var(--color-glass-border)] py-12 sm:py-14">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-text">
               You’re not searching alone
             </p>
             <h2 className="mt-2 font-display text-3xl font-bold text-ink">
@@ -615,7 +615,7 @@ export function LandingPage() {
                   </div>
                   <div className="p-5">
                     <p className="font-display text-lg text-ink">{t.q}</p>
-                    <footer className="mt-3 text-sm font-semibold text-accent">
+                    <footer className="mt-3 text-sm font-semibold text-accent-text">
                       {t.a}
                     </footer>
                   </div>
@@ -658,7 +658,7 @@ export function LandingPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}
-                  className="rounded-lg bg-white px-5 py-3 text-sm font-bold text-[#132A22] no-underline"
+                  className="rounded-lg bg-white px-5 py-3 text-sm font-bold text-on-accent no-underline"
                 >
                   Email {SUPPORT_EMAIL}
                 </a>
@@ -666,7 +666,7 @@ export function LandingPage() {
                   href={waUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg bg-accent px-5 py-3 text-sm font-bold text-[#132A22] no-underline"
+                  className="rounded-lg bg-accent px-5 py-3 text-sm font-bold text-on-accent no-underline"
                 >
                   WhatsApp StaySpot
                 </a>
@@ -701,7 +701,7 @@ export function LandingPage() {
               <li>
                 <Link
                   to="/register?role=SEEKER"
-                  className="font-bold text-accent no-underline hover:underline"
+                  className="font-bold text-accent-text no-underline hover:underline"
                 >
                   Create seeker account
                 </Link>

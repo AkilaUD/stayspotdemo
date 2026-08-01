@@ -11,7 +11,7 @@ const styles = {
     Icon: AlertCircle,
   },
   success: {
-    wrap: 'border-success/40 bg-success/10 text-[#1a5c38] dark:text-success',
+    wrap: 'border-success/40 bg-success/10 text-teal dark:text-success',
     Icon: CheckCircle2,
   },
   info: {
@@ -83,7 +83,7 @@ export function EmptyState({
             loading="lazy"
             className="h-full w-full object-cover"
             fallback={
-              <div className="flex h-full w-full items-center justify-center bg-accent/10 text-accent">
+              <div className="flex h-full w-full items-center justify-center bg-accent/10 text-accent-text">
                 <Icon className="h-10 w-10" aria-hidden />
               </div>
             }
@@ -95,7 +95,7 @@ export function EmptyState({
         </div>
       ) : (
         <div className="relative flex justify-center pt-10">
-          <div className="rounded-2xl bg-accent/15 p-4 text-accent ring-1 ring-accent/30">
+          <div className="rounded-2xl bg-accent/15 p-4 text-accent-text ring-1 ring-accent/30">
             <Icon className="h-7 w-7" aria-hidden />
           </div>
         </div>
@@ -147,7 +147,7 @@ export function PageHeader({
     <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
         {eyebrow && (
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-text">
             {eyebrow}
           </p>
         )}
@@ -155,7 +155,7 @@ export function PageHeader({
           {title}
         </h1>
         {description && (
-          <p className="mt-2 max-w-2xl text-sm text-muted sm:text-base">
+          <p className="mt-2 max-w-2xl text-sm text-ink/90 sm:text-base">
             {description}
           </p>
         )}

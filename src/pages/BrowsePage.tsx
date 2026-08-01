@@ -108,7 +108,7 @@ function ListingCard({
           <CardTitle className="text-xl leading-snug">
             <Link
               to={`/listings/${listing.id}`}
-              className="text-ink no-underline hover:text-accent"
+              className="text-ink no-underline hover:text-accent-text"
             >
               {listing.title}
             </Link>
@@ -155,7 +155,7 @@ function ListingCard({
             to={`/listings/${listing.id}`}
             className={cn(
               buttonVariants({ size: 'sm' }),
-              'bg-accent text-[#132A22] hover:brightness-105',
+              'bg-accent text-on-accent hover:brightness-105',
             )}
           >
             View details
@@ -454,7 +454,7 @@ export function BrowsePage() {
                   to="/browse"
                   className={cn(
                     buttonVariants({ variant: 'primary' }),
-                    'bg-accent text-[#132A22] hover:brightness-105',
+                    'bg-accent text-on-accent hover:brightness-105',
                   )}
                 >
                   Reset & browse

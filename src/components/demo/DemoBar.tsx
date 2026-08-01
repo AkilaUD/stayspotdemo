@@ -61,7 +61,7 @@ export function DemoBar() {
         <button
           type="button"
           onClick={resetDemo}
-          className="rounded-md bg-accent/90 px-2 py-1 font-medium text-[#132A22] transition hover:bg-accent"
+          className="rounded-md bg-accent/90 px-2 py-1 font-medium text-on-accent transition hover:bg-accent"
         >
           Reset data
         </button>

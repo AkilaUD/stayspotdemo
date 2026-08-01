@@ -134,7 +134,7 @@ export function PricingPage() {
             <>
               {' '}
               ·{' '}
-              <Link to="/seeker/premium" className="font-semibold text-accent">
+              <Link to="/seeker/premium" className="font-semibold text-accent-text">
                 Manage premium
               </Link>
             </>
@@ -240,7 +240,7 @@ export function PricingPage() {
                           className={cn(
                             'w-full',
                             plan.code === 'growth' &&
-                              'bg-accent text-[#132A22] hover:brightness-105',
+                              'bg-accent text-on-accent hover:brightness-105',
                           )}
                           disabled={busyCode === plan.code || isCurrent}
                           loading={busyCode === plan.code}
@@ -260,7 +260,7 @@ export function PricingPage() {
                           buttonVariants({ variant: 'primary' }),
                           'w-full',
                           plan.code === 'growth' &&
-                            'bg-accent text-[#132A22] hover:brightness-105',
+                            'bg-accent text-on-accent hover:brightness-105',
                         )}
                       >
                         Create advertiser account
@@ -369,7 +369,7 @@ export function PricingPage() {
                           className={cn(
                             'w-full',
                             (plan.code === 'plus' || plan.code === 'PLUS') &&
-                              'bg-accent text-[#132A22] hover:brightness-105',
+                              'bg-accent text-on-accent hover:brightness-105',
                           )}
                           disabled={busyCode === plan.code || isCurrent}
                           loading={busyCode === plan.code}

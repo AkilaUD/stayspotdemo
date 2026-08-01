@@ -9,16 +9,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-accent text-[#132A22] shadow-[0_0_0_0_rgba(232,177,104,0)] hover:brightness-105 hover:shadow-[0_0_24px_rgba(232,177,104,0.45)]',
+          'bg-accent text-on-accent shadow-[0_0_0_0_rgba(232,177,104,0)] hover:brightness-105 hover:shadow-[0_0_24px_rgba(232,177,104,0.45)]',
         secondary:
           'border border-[var(--color-line)] bg-[var(--color-glass-surface)] text-ink backdrop-blur-md hover:border-accent/60',
         outline:
           'border border-[var(--color-line)] bg-transparent text-ink hover:bg-[var(--color-glass-surface)] hover:border-accent/50',
         ghost: 'bg-transparent text-ink hover:bg-[var(--color-glass-surface)]',
-        link: 'bg-transparent p-0 font-semibold text-accent underline-offset-4 hover:underline',
+        link: 'bg-transparent p-0 font-semibold text-accent-text underline-offset-4 hover:underline',
         destructive:
           'bg-warning text-white shadow-sm hover:brightness-110',
-        success: 'bg-success text-[#132A22] shadow-sm hover:brightness-105',
+        success: 'bg-success text-on-accent shadow-sm hover:brightness-105',
       },
       size: {
         sm: 'h-8 px-3 text-xs',

@@ -119,7 +119,7 @@ export function LoginPage() {
             </form>
             <p className="mt-5 text-center text-sm text-muted">
               No account?{' '}
-              <Link to="/register" className="font-semibold text-accent">
+              <Link to="/register" className="font-semibold text-accent-text">
                 Create one
               </Link>
             </p>

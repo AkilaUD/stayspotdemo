@@ -12,10 +12,12 @@
   --color-glass-surface: rgba(255, 252, 246, 0.88);
   --color-glass-border: rgba(19, 42, 34, 0.16);
   --color-accent: #e8b168;
+  --color-accent-text: #8a5a1e;
+  --color-on-accent: #132a22;
   --color-success: #6fcf97;
   --color-warning: #e88168;
   --color-ink: #132a22;
-  --color-muted: rgba(19, 42, 34, 0.72);
+  --color-muted: rgba(19, 42, 34, 0.78);
 
   --color-surface: #f6f0e4;
   --color-card: #fffffff5;
@@ -55,21 +57,24 @@
 
 .dark {
   --color-base: #0c1411;
-  --color-glass-surface: rgba(255, 255, 255, 0.11);
+  --color-glass-surface: rgba(255, 255, 255, 0.16);
   --color-glass-border: rgba(243, 241, 235, 0.22);
   --color-accent: #e8b168;
+  --color-accent-text: #f0c57a;
+  --color-on-accent: #132a22;
   --color-success: #6fcf97;
   --color-warning: #e88168;
   --color-ink: #f3f1eb;
-  --color-muted: rgba(243, 241, 235, 0.72);
+  --color-muted: rgba(243, 241, 235, 0.78);
 
   --color-surface: #0c1411;
-  --color-card: #1a2420ee;
+  --color-card: #1a2420;
   --color-action: #e8b168;
   --color-trust: #6fcf97;
   --color-line: rgba(243, 241, 235, 0.18);
   --color-teal: #9fd5c9;
-  --color-teal-deep: #9fd5c9;
+  /* Stay deep for bands/CTAs — never flip to mint */
+  --color-teal-deep: #0a1612;
 
   --glass-shadow:
     0 12px 40px rgba(0, 0, 0, 0.45),
@@ -80,7 +85,7 @@
   --warm-wash: rgba(232, 177, 104, 0.08);
   --teal-wash: rgba(159, 213, 201, 0.06);
   --grain-opacity: 0.06;
-  --presence-surface: rgba(26, 36, 32, 0.75);
+  --presence-surface: rgba(26, 36, 32, 0.85);
 }
 
 @media (max-width: 767px) {
@@ -181,10 +186,10 @@ body {
 .glass-overlay {
   background: linear-gradient(
     180deg,
-    rgba(11, 18, 16, 0.55) 0%,
-    rgba(11, 18, 16, 0.2) 28%,
-    rgba(11, 18, 16, 0.35) 55%,
-    rgba(19, 42, 34, 0.55) 100%
+    rgba(11, 18, 16, 0.5) 0%,
+    rgba(11, 18, 16, 0.18) 28%,
+    rgba(11, 18, 16, 0.28) 55%,
+    rgba(19, 42, 34, 0.5) 100%
   );
 }
 

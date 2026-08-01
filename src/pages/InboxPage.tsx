@@ -171,7 +171,7 @@ export function InboxPage() {
                 to="/advertiser/publish"
                 className={cn(
                   buttonVariants({ variant: 'primary' }),
-                  'bg-accent text-[#132A22] hover:brightness-105',
+                  'bg-accent text-on-accent hover:brightness-105',
                 )}
               >
                 Create an Ad
@@ -181,7 +181,7 @@ export function InboxPage() {
                 to="/browse"
                 className={cn(
                   buttonVariants({ variant: 'primary' }),
-                  'bg-accent text-[#132A22] hover:brightness-105',
+                  'bg-accent text-on-accent hover:brightness-105',
                 )}
               >
                 Browse listings

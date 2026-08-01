@@ -132,7 +132,7 @@ export function SeekerPremiumPage() {
             <>
               {' '}
               ·{' '}
-              <Link to="/pricing" className="font-semibold text-accent">
+              <Link to="/pricing" className="font-semibold text-accent-text">
                 Upgrade to Plus
               </Link>
             </>
@@ -166,7 +166,7 @@ export function SeekerPremiumPage() {
               {!sub?.isPremium ? (
                 <p className="text-sm text-muted">
                   Free plan cannot create saved searches.{' '}
-                  <Link to="/pricing" className="font-semibold text-accent">
+                  <Link to="/pricing" className="font-semibold text-accent-text">
                     Upgrade with PayHere
                   </Link>
                 </p>
@@ -283,7 +283,7 @@ export function SeekerPremiumPage() {
                       to="/browse"
                       className={cn(
                         buttonVariants({ variant: 'primary' }),
-                        'bg-accent text-[#132A22] hover:brightness-105',
+                        'bg-accent text-on-accent hover:brightness-105',
                       )}
                     >
                       Browse listings

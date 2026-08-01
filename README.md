@@ -48,7 +48,11 @@ Use the teal **Demo** bar (top) to switch instantly, or log in on `/login`.
 | `/admin/analytics` | Live counts from demo store |
 | `/admin/postings` | Approve / reject queue |
 
-Also: theme toggle, AppShell role nav, onboarding tour.
+Also: theme toggle, AppShell role nav, onboarding tour (**Tour** on the demo bar to replay; not auto-shown per persona).
+
+## Theme
+
+Uses the **same light/dark color tokens** as production (`index.css`): cream + forest teal, gold fills, readable `accent-text` / `on-accent`, and deep teal bands that stay dark in dark mode. Toggle via the sun/moon control in the nav.
 
 ## Seed highlights
 
@@ -65,4 +69,4 @@ Also: theme toggle, AppShell role nav, onboarding tour.
 - [`src/demo/mockApi.ts`](src/demo/mockApi.ts) — drop-in replacement for production `api.ts`
 - [`src/components/demo/DemoBar.tsx`](src/components/demo/DemoBar.tsx) — persona switcher
 
-Production app under `D:\x\src\frontend` is unchanged.
+Shared UI is synced from `D:\x\src\frontend`; demo keeps mock API, DemoBar, and sticky offsets under the demo chrome.

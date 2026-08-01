@@ -48,7 +48,7 @@ export function InquiryStatusStepper({
               className={cn(
                 'inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 ring-1',
                 done
-                  ? 'bg-success/15 text-[#1a5c38] ring-success/40 dark:text-success'
+                  ? 'bg-success/15 text-teal ring-success/40 dark:text-success'
                   : 'bg-[color-mix(in_srgb,var(--color-ink)_8%,transparent)] text-muted ring-[var(--color-line)]',
                 active && 'text-ink ring-accent/60',
               )}

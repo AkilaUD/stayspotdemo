@@ -12,7 +12,7 @@ export function MobileStickyCta() {
       <div className="mx-auto flex max-w-lg gap-2">
         <Link
           to="/browse"
-          className="flex-1 rounded-full bg-accent px-3 py-3 text-center text-sm font-bold text-[#132A22] no-underline shadow-[0_0_20px_rgba(232,177,104,0.35)]"
+          className="flex-1 rounded-full bg-accent px-3 py-3 text-center text-sm font-bold text-on-accent no-underline shadow-[0_0_20px_rgba(232,177,104,0.35)]"
         >
           Find a room
         </Link>

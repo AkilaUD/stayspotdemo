@@ -8,16 +8,16 @@ const badgeVariants = cva(
       variant: {
         default:
           'border border-[var(--color-glass-border)] bg-[var(--color-glass-surface)] text-ink backdrop-blur-sm',
-        success: 'bg-success/20 text-[#1a5c38] ring-1 ring-success/40 dark:text-success',
+        success: 'bg-success/20 text-teal ring-1 ring-success/40 dark:text-success',
         warning: 'bg-warning/15 text-warning ring-1 ring-warning/40',
         danger: 'bg-warning/20 text-warning ring-1 ring-warning/50',
         info: 'border border-[var(--color-glass-border)] bg-[var(--color-glass-surface)] text-ink',
-        accent: 'bg-accent/20 text-[#8a5a18] ring-1 ring-accent/40 dark:text-accent',
+        accent: 'bg-accent/20 text-accent-text ring-1 ring-accent/40',
         verified:
           'border border-accent/50 bg-[var(--color-glass-surface)] text-ink backdrop-blur-sm ring-1 ring-accent/25',
         pending:
           'bg-[color-mix(in_srgb,var(--color-ink)_8%,transparent)] text-ink ring-1 ring-[var(--color-line)]',
-        live: 'bg-success text-[#132A22]',
+        live: 'bg-success text-on-accent',
       },
     },
     defaultVariants: { variant: 'default' },

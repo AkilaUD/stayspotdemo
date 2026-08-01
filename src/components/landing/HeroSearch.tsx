@@ -35,13 +35,13 @@ export function HeroSearch({ liveCount }: HeroSearchProps) {
         aria-label="Search boarding places"
       >
         <div className="flex min-w-0 flex-1 items-center gap-2 px-3 py-2 sm:py-1">
-          <Search className="h-5 w-5 shrink-0 text-[#132A22]/60" aria-hidden />
+          <Search className="h-5 w-5 shrink-0 text-on-accent/60" aria-hidden />
           <input
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Colombo, Kandy, campus…"
-            className="min-w-0 flex-1 border-0 bg-transparent text-base text-[#132A22] outline-none placeholder:text-[#132A22]/45"
+            className="min-w-0 flex-1 border-0 bg-transparent text-base text-on-accent outline-none placeholder:text-on-accent/45"
             aria-label="Keyword or area"
           />
         </div>
@@ -52,7 +52,7 @@ export function HeroSearch({ liveCount }: HeroSearchProps) {
           id="hero-district"
           value={district}
           onChange={(e) => setDistrict(e.target.value)}
-          className="mx-2 rounded-xl border border-[#132A22]/12 bg-[#f8f4ec] px-3 py-2 text-sm font-semibold text-[#132A22] sm:mx-0 sm:max-w-[9.5rem]"
+          className="mx-2 rounded-xl border border-on-accent/12 bg-[#f8f4ec] px-3 py-2 text-sm font-semibold text-on-accent sm:mx-0 sm:max-w-[9.5rem]"
         >
           <option value="Colombo">Colombo</option>
           <option value="Gampaha">Gampaha</option>
