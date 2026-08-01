@@ -18,12 +18,18 @@ import {
   useState,
   type CSSProperties,
 } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
+import {
+  consumeTourReplay,
+  markTourDone,
+} from '../demo/onboarding'
 import { Button } from './ui/button'
 
 const OPEN_MOBILE_NAV_EVENT = 'stayspot:open-mobile-nav'
 const PAD = 8
+const DEMO_BAR_OFFSET = 40
 
 type TourStep = {
   title: string
@@ -35,10 +41,6 @@ type TourStep = {
 }
 
 type Rect = { top: number; left: number; width: number; height: number }
-
-function storageKey(userId: string) {
-  return `stayspot.onboarding.v1.${userId}`
-}
 
 function stepsForRole(role: string): TourStep[] {
   switch (role.toUpperCase()) {
@@ -171,15 +173,11 @@ export function OnboardingTour() {
       setOpen(false)
       return
     }
-    try {
-      const done = localStorage.getItem(storageKey(user.id))
-      if (!done) {
-        setStepIndex(0)
-        setOpen(true)
-      } else {
-        setOpen(false)
-      }
-    } catch {
+    // Demo: only open when DemoBar "Tour" arms a one-shot replay
+    if (consumeTourReplay(user.id)) {
+      setStepIndex(0)
+      setOpen(true)
+    } else {
       setOpen(false)
     }
   }, [loading, user])
@@ -217,23 +215,9 @@ export function OnboardingTour() {
     }
   }, [open, refreshRect])
 
-  useEffect(() => {
-    if (!open || !rect) return
-    const el = findVisibleTourTarget(steps[stepIndex]?.target ?? '')
-    if (!el) return
-    el.classList.add('ring-2', 'ring-accent', 'relative', 'z-[70]')
-    return () => {
-      el.classList.remove('ring-2', 'ring-accent', 'relative', 'z-[70]')
-    }
-  }, [open, rect, stepIndex, steps])
-
   function complete() {
     if (!user) return
-    try {
-      localStorage.setItem(storageKey(user.id), '1')
-    } catch {
-      /* ignore quota */
-    }
+    markTourDone(user.id)
     setOpen(false)
   }
 
@@ -244,16 +228,25 @@ export function OnboardingTour() {
   const isLast = stepIndex >= steps.length - 1
   const tipStyle = tipPosition(rect)
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[60]"
+      className="fixed inset-0 z-[90]"
       role="dialog"
       aria-modal="true"
       aria-labelledby="onboarding-title"
     >
       {rect ? (
         <>
-          {/* Clickable dim regions — hole stays interactive for the nav target */}
+          <div
+            className="pointer-events-none absolute rounded-xl ring-2 ring-accent"
+            style={{
+              top: rect.top,
+              left: rect.left,
+              width: rect.width,
+              height: rect.height,
+            }}
+            aria-hidden
+          />
           <button
             type="button"
             className="absolute left-0 right-0 top-0 bg-ink/45"
@@ -301,7 +294,7 @@ export function OnboardingTour() {
       )}
 
       <div
-        className="absolute z-[80] w-[min(100%-2rem,22rem)] rounded-2xl border border-[var(--color-line)] bg-base p-5 shadow-[var(--glass-shadow)]"
+        className="absolute z-[1] w-[min(100%-2rem,22rem)] rounded-2xl border border-[var(--color-line)] bg-base p-5 shadow-[var(--glass-shadow)] isolation-isolate"
         style={tipStyle}
       >
         <div className="mb-3 flex items-start gap-3">
@@ -359,11 +352,10 @@ export function OnboardingTour() {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
-
-const DEMO_BAR_OFFSET = 40 // matches App pt-10 / DemoBar h-10
 
 function tipPosition(rect: Rect | null): CSSProperties {
   const vw = typeof window !== 'undefined' ? window.innerWidth : 400

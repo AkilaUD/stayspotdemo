@@ -1,5 +1,15 @@
 import { DEMO_PASSWORD, demoPersonas, tokenForUser } from '../../demo/mockApi'
+import {
+  markSeedToursDone,
+  requestTourReplay,
+} from '../../demo/onboarding'
 import { resetStore } from '../../demo/store'
+
+function currentDemoUserId(): string | null {
+  const token = localStorage.getItem('stayspot_token')
+  if (!token?.startsWith('demo.')) return null
+  return token.slice('demo.'.length)
+}
 
 export function DemoBar() {
   function switchPersona(userId: string | null) {
@@ -8,7 +18,7 @@ export function DemoBar() {
     } else {
       localStorage.removeItem('stayspot_token')
     }
-    // Keep onboarding flags so persona switch does not force the tour again
+    markSeedToursDone()
     window.location.assign('/')
   }
 
@@ -18,8 +28,18 @@ export function DemoBar() {
     for (const key of Object.keys(localStorage)) {
       if (key.startsWith('stayspot.onboarding.')) localStorage.removeItem(key)
     }
+    markSeedToursDone()
     window.location.assign('/')
   }
+
+  function replayTour() {
+    const userId = currentDemoUserId()
+    if (!userId) return
+    requestTourReplay(userId)
+    window.location.assign(window.location.pathname + window.location.search)
+  }
+
+  const canTour = Boolean(currentDemoUserId())
 
   return (
     <div className="fixed inset-x-0 top-0 z-[100] border-b border-teal-deep/20 bg-teal-deep text-white">
@@ -44,6 +64,15 @@ export function DemoBar() {
           className="rounded-md bg-accent/90 px-2 py-1 font-medium text-[#132A22] transition hover:bg-accent"
         >
           Reset data
+        </button>
+        <button
+          type="button"
+          onClick={replayTour}
+          disabled={!canTour}
+          title={canTour ? 'Replay onboarding for this persona' : 'Switch to a persona first'}
+          className="rounded-md bg-white/10 px-2 py-1 font-medium transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Tour
         </button>
         <span className="ml-auto hidden text-white/60 lg:inline">
           Password for all personas: {DEMO_PASSWORD}
