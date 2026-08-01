@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" fill="none" role="img" aria-label="StaySpot">
+  <g transform="translate(12,18) scale(0.95)">
+    <path
+      fill="#f3f1eb"
+      d="M64 8c-24.3 0-44 19.7-44 44 0 31.5 34.4 60.4 41.4 66.1a4.2 4.2 0 0 0 5.2 0C73.6 112.4 108 83.5 108 52 108 27.7 88.3 8 64 8Z"
+    />
+    <circle cx="64" cy="50" r="26" fill="#0c1411"/>
+    <path fill="#f3f1eb" d="M64 32 44 48v22h12V58h16v12h12V48L64 32Z"/>
+    <rect x="58" y="58" width="12" height="12" rx="1.5" fill="#e8b168"/>
+  </g>
+  <text
+    x="156"
+    y="108"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="88"
+    font-weight="700"
+    fill="#f3f1eb"
+    letter-spacing="-1.5"
+  >StaySpot</text>
+</svg>

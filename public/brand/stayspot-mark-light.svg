@@ -1,16 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" role="img" aria-label="StaySpot">
-  <!-- Map-pin body -->
   <path
-    fill="#132a22"
+    fill="#f3f1eb"
     d="M64 8c-24.3 0-44 19.7-44 44 0 31.5 34.4 60.4 41.4 66.1a4.2 4.2 0 0 0 5.2 0C73.6 112.4 108 83.5 108 52 108 27.7 88.3 8 64 8Z"
   />
-  <!-- Inner circle / house yard -->
-  <circle cx="64" cy="50" r="26" fill="#f6f0e4"/>
-  <!-- Simple house -->
+  <circle cx="64" cy="50" r="26" fill="#0c1411"/>
   <path
-    fill="#132a22"
+    fill="#f3f1eb"
     d="M64 32 44 48v22h12V58h16v12h12V48L64 32Z"
   />
-  <!-- Accent door/dot -->
   <rect x="58" y="58" width="12" height="12" rx="1.5" fill="#e8b168"/>
 </svg>
