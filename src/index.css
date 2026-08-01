@@ -1,0 +1,249 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Lived-in warmth — golden-hour boarding marketplace */
+  --color-base: #f6f0e4;
+  --color-glass-surface: rgba(255, 252, 246, 0.88);
+  --color-glass-border: rgba(19, 42, 34, 0.16);
+  --color-accent: #e8b168;
+  --color-success: #6fcf97;
+  --color-warning: #e88168;
+  --color-ink: #132a22;
+  --color-muted: rgba(19, 42, 34, 0.72);
+
+  --color-surface: #f6f0e4;
+  --color-card: #fffffff5;
+  --color-action: #e8b168;
+  --color-trust: #6fcf97;
+  --color-line: rgba(19, 42, 34, 0.16);
+  --color-teal: #2a5a4a;
+  --color-teal-deep: #132a22;
+
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --shadow-sm: 0 4px 16px rgba(11, 18, 16, 0.06);
+  --shadow-md: 0 8px 32px rgba(11, 18, 16, 0.12);
+}
+
+:root {
+  --glass-blur: blur(20px) saturate(165%);
+  --glass-shadow:
+    0 8px 32px rgba(11, 18, 16, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --glass-shadow-dense:
+    0 4px 16px rgba(11, 18, 16, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --warm-wash: rgba(232, 177, 104, 0.12);
+  --teal-wash: rgba(42, 90, 74, 0.08);
+  --grain-opacity: 0.045;
+  --presence-surface: rgba(255, 252, 246, 0.72);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  color: var(--color-ink);
+  background: var(--color-base);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark {
+  --color-base: #0c1411;
+  --color-glass-surface: rgba(255, 255, 255, 0.11);
+  --color-glass-border: rgba(243, 241, 235, 0.22);
+  --color-accent: #e8b168;
+  --color-success: #6fcf97;
+  --color-warning: #e88168;
+  --color-ink: #f3f1eb;
+  --color-muted: rgba(243, 241, 235, 0.72);
+
+  --color-surface: #0c1411;
+  --color-card: #1a2420ee;
+  --color-action: #e8b168;
+  --color-trust: #6fcf97;
+  --color-line: rgba(243, 241, 235, 0.18);
+  --color-teal: #9fd5c9;
+  --color-teal-deep: #9fd5c9;
+
+  --glass-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-shadow-dense:
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --warm-wash: rgba(232, 177, 104, 0.08);
+  --teal-wash: rgba(159, 213, 201, 0.06);
+  --grain-opacity: 0.06;
+  --presence-surface: rgba(26, 36, 32, 0.75);
+}
+
+@media (max-width: 767px) {
+  :root,
+  .dark {
+    --glass-blur: blur(12px) saturate(140%);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-base);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 0% -10%, var(--warm-wash), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 100% 0%, var(--teal-wash), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, var(--teal-wash), transparent 55%);
+  color: var(--color-ink);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer base {
+  a {
+    color: inherit;
+    text-underline-offset: 3px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.page-canvas {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-canvas::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* Keep content above the grain overlay without forcing position on
+   headers — `position: relative` would override sticky/fixed utilities. */
+.page-canvas > *:not(header) {
+  position: relative;
+  z-index: 1;
+}
+
+.band-warm {
+  background:
+    radial-gradient(ellipse 90% 80% at 20% 0%, var(--warm-wash), transparent 60%),
+    color-mix(in srgb, var(--color-base) 92%, var(--color-accent));
+}
+
+.band-deep {
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(232, 177, 104, 0.15), transparent 50%),
+    var(--color-teal-deep);
+}
+
+.band-presence {
+  background: var(--presence-surface);
+  border-block: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(12px);
+}
+
+.glass-panel {
+  background: var(--color-glass-surface);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.glass-panel-dense {
+  background: var(--color-glass-surface);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--glass-shadow-dense);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+}
+
+.glass-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 18, 16, 0.55) 0%,
+    rgba(11, 18, 16, 0.2) 28%,
+    rgba(11, 18, 16, 0.35) 55%,
+    rgba(19, 42, 34, 0.55) 100%
+  );
+}
+
+@keyframes glass-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes presence-soft {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.presence-ambient {
+  animation: presence-soft 4.5s ease-in-out infinite;
+}
+
+.glass-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-glass-surface) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    var(--color-glass-surface) 100%
+  );
+  background-size: 200% 100%;
+  animation: glass-shimmer 1.4s ease-in-out infinite;
+}
+
+.dark .glass-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-glass-surface) 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    var(--color-glass-surface) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .glass-skeleton,
+  .presence-ambient {
+    animation: none;
+  }
+}
