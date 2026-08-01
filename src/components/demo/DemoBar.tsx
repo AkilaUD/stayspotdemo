@@ -8,10 +8,7 @@ export function DemoBar() {
     } else {
       localStorage.removeItem('stayspot_token')
     }
-    // Clear onboarding so role tours can replay after persona switch
-    for (const key of Object.keys(localStorage)) {
-      if (key.startsWith('stayspot.onboarding.')) localStorage.removeItem(key)
-    }
+    // Keep onboarding flags so persona switch does not force the tour again
     window.location.assign('/')
   }
 

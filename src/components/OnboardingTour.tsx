@@ -253,35 +253,24 @@ export function OnboardingTour() {
     >
       {rect ? (
         <>
-          <div
-            className="pointer-events-none absolute rounded-xl ring-2 ring-accent"
-            style={{
-              top: rect.top,
-              left: rect.left,
-              width: rect.width,
-              height: rect.height,
-              boxShadow: '0 0 0 9999px rgba(19, 42, 34, 0.45)',
-            }}
-            aria-hidden
-          />
           {/* Clickable dim regions — hole stays interactive for the nav target */}
           <button
             type="button"
-            className="absolute left-0 right-0 top-0 bg-transparent"
+            className="absolute left-0 right-0 top-0 bg-ink/45"
             style={{ height: Math.max(0, rect.top) }}
             aria-label="Dismiss tutorial"
             onClick={complete}
           />
           <button
             type="button"
-            className="absolute left-0 right-0 bottom-0 bg-transparent"
+            className="absolute left-0 right-0 bottom-0 bg-ink/45"
             style={{ top: rect.top + rect.height }}
             aria-label="Dismiss tutorial"
             onClick={complete}
           />
           <button
             type="button"
-            className="absolute left-0 bg-transparent"
+            className="absolute left-0 bg-ink/45"
             style={{
               top: rect.top,
               width: Math.max(0, rect.left),
@@ -292,7 +281,7 @@ export function OnboardingTour() {
           />
           <button
             type="button"
-            className="absolute right-0 bg-transparent"
+            className="absolute right-0 bg-ink/45"
             style={{
               top: rect.top,
               left: rect.left + rect.width,
@@ -312,7 +301,7 @@ export function OnboardingTour() {
       )}
 
       <div
-        className="glass-panel absolute z-[80] w-[min(100%-2rem,22rem)] rounded-2xl border border-[var(--color-glass-border)] p-5 shadow-md"
+        className="absolute z-[80] w-[min(100%-2rem,22rem)] rounded-2xl border border-[var(--color-line)] bg-base p-5 shadow-[var(--glass-shadow)]"
         style={tipStyle}
       >
         <div className="mb-3 flex items-start gap-3">
@@ -374,11 +363,14 @@ export function OnboardingTour() {
   )
 }
 
+const DEMO_BAR_OFFSET = 40 // matches App pt-10 / DemoBar h-10
+
 function tipPosition(rect: Rect | null): CSSProperties {
   const vw = typeof window !== 'undefined' ? window.innerWidth : 400
   const vh = typeof window !== 'undefined' ? window.innerHeight : 800
   const tipW = Math.min(vw - 32, 352)
   const tipH = 220
+  const minTop = DEMO_BAR_OFFSET + 8
 
   if (!rect) {
     return {
@@ -392,10 +384,13 @@ function tipPosition(rect: Rect | null): CSSProperties {
   const left = Math.min(Math.max(16, rect.left), vw - tipW - 16)
 
   if (top + tipH > vh - 16) {
-    top = Math.max(16, rect.top - tipH - 12)
+    top = Math.max(minTop, rect.top - tipH - 12)
   }
-  if (top < 16) {
-    top = Math.max(16, Math.min(rect.top + rect.height + 12, vh - tipH - 16))
+  if (top < minTop) {
+    top = Math.max(
+      minTop,
+      Math.min(rect.top + rect.height + 12, vh - tipH - 16),
+    )
   }
 
   return { top, left, bottom: 'auto' }
