@@ -135,7 +135,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <div className="leading-tight">
               <Link
                 to="/"
-                className="font-display text-lg font-bold text-teal-deep no-underline dark:text-teal"
+                className="font-display text-lg font-bold text-ink no-underline"
               >
                 StaySpot
               </Link>

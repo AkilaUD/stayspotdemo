@@ -78,7 +78,7 @@ export function LandingNav() {
                   </Link>
                   <Link
                     to="/advertiser/publish"
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-teal-deep px-3 py-2 text-sm font-bold text-white no-underline shadow-sm transition hover:brightness-110"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-3 py-2 text-sm font-bold text-on-accent no-underline shadow-sm transition hover:brightness-105"
                   >
                     <Send className="h-3.5 w-3.5" aria-hidden />
                     Post Ad
@@ -119,7 +119,7 @@ export function LandingNav() {
               </Link>
               <Link
                 to="/register?role=ADVERTISER"
-                className="hidden items-center gap-1.5 rounded-xl bg-teal-deep px-3 py-2 text-sm font-bold text-white no-underline sm:inline-flex"
+                className="hidden items-center gap-1.5 rounded-xl bg-accent px-3 py-2 text-sm font-bold text-on-accent no-underline shadow-sm transition hover:brightness-105 sm:inline-flex"
               >
                 <Send className="h-3.5 w-3.5" aria-hidden />
                 Post Ad
