@@ -238,7 +238,7 @@ export function PricingPage() {
                         <Button
                           type="button"
                           className={cn(
-                            'w-full',
+                            'h-auto w-full whitespace-normal text-balance py-2.5',
                             plan.code === 'growth' &&
                               'bg-accent text-on-accent hover:brightness-105',
                           )}

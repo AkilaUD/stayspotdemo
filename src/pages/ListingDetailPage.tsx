@@ -277,121 +277,9 @@ export function ListingDetailPage() {
               </div>
             )}
           </div>
-
-          <Card>
-            <CardContent className="space-y-4 pt-6">
-              <p className="text-base leading-relaxed text-ink">
-                {listing.description}
-              </p>
-              <div className="flex flex-wrap gap-3 text-sm text-muted">
-                <span className="inline-flex items-center gap-1.5">
-                  <BedDouble className="h-4 w-4 text-accent" aria-hidden />
-                  {listing.bedrooms} bed · {listing.bathrooms} bath
-                </span>
-                {listing.furniture && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-0.5 ring-1 ring-line">
-                    {listing.furniture}
-                  </span>
-                )}
-                {listing.parking && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-0.5 ring-1 ring-line">
-                    Parking: {listing.parking}
-                  </span>
-                )}
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4 text-accent" aria-hidden />
-                  {listing.city}, {listing.district}
-                </span>
-              </div>
-              <p className="mt-3 text-sm text-muted">
-                Neighborhood: boarding near {listing.city} · {listing.district}{' '}
-                corridor — unlock when you’re ready to visit.
-              </p>
-              <TrustStrip dense className="mt-3" />
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-accent" aria-hidden />
-                Reviews
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {reviews.length === 0 ? (
-                <div className="space-y-4 py-2">
-                  <p className="text-sm text-muted">
-                    No published reviews yet — StaySpot still protects you with
-                    the same marketplace rules.
-                  </p>
-                  <TrustStrip />
-                </div>
-              ) : (
-                <ul className="space-y-3">
-                  {reviews.map((r) => (
-                    <li
-                      key={r.id}
-                      className="glass-panel-dense rounded-xl p-4"
-                    >
-                      <div className="mb-1 flex flex-wrap items-center gap-2">
-                        <Badge variant="success">{r.rating}/5</Badge>
-                        <span className="text-sm text-muted">
-                          {r.seekerDisplayName || 'Seeker'} ·{' '}
-                          {new Date(r.createdAtUtc).toLocaleDateString()}
-                        </span>
-                      </div>
-                      <p className="text-sm text-ink">{r.body}</p>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {user?.role === 'SEEKER' && (
-                <form
-                  className="grid gap-4 border-t border-[var(--color-glass-border)] pt-4"
-                  onSubmit={(e) => void sendReview(e)}
-                >
-                  <p className="text-sm text-muted">
-                    After you inquire or unlock contact, leave a short review.
-                    Ratings 3–5 publish immediately; 1–2 need admin moderation.
-                  </p>
-                  <Label>
-                    Rating
-                    <Select
-                      value={rating}
-                      onChange={(e) => setRating(Number(e.target.value))}
-                    >
-                      {[5, 4, 3, 2, 1].map((n) => (
-                        <option key={n} value={n}>
-                          {n}
-                        </option>
-                      ))}
-                    </Select>
-                  </Label>
-                  <Label required>
-                    Review
-                    <Textarea
-                      rows={3}
-                      required
-                      minLength={10}
-                      maxLength={1000}
-                      value={reviewBody}
-                      onChange={(e) => setReviewBody(e.target.value)}
-                      placeholder="Honest note for the next renter…"
-                    />
-                  </Label>
-                  <Button type="submit" loading={busy} className="w-fit">
-                    {busy ? 'Sending…' : 'Submit review'}
-                  </Button>
-                  {reviewOk && <Alert variant="success">{reviewOk}</Alert>}
-                </form>
-              )}
-            </CardContent>
-          </Card>
         </div>
 
-        <div className="space-y-6 lg:sticky lg:top-20 lg:self-start">
+        <div className="space-y-6 lg:row-span-2 lg:sticky lg:top-20 lg:self-start">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -566,6 +454,120 @@ export function ListingDetailPage() {
               </CardContent>
             </Card>
           )}
+        </div>
+
+        <div className="space-y-6">
+          <Card>
+            <CardContent className="space-y-4 pt-6">
+              <p className="text-base leading-relaxed text-ink">
+                {listing.description}
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm text-muted">
+                <span className="inline-flex items-center gap-1.5">
+                  <BedDouble className="h-4 w-4 text-accent" aria-hidden />
+                  {listing.bedrooms} bed · {listing.bathrooms} bath
+                </span>
+                {listing.furniture && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-0.5 ring-1 ring-line">
+                    {listing.furniture}
+                  </span>
+                )}
+                {listing.parking && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-0.5 ring-1 ring-line">
+                    Parking: {listing.parking}
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4 text-accent" aria-hidden />
+                  {listing.city}, {listing.district}
+                </span>
+              </div>
+              <p className="mt-3 text-sm text-muted">
+                Neighborhood: boarding near {listing.city} · {listing.district}{' '}
+                corridor — unlock when you’re ready to visit.
+              </p>
+              <TrustStrip dense className="mt-3" />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Star className="h-5 w-5 text-accent" aria-hidden />
+                Reviews
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {reviews.length === 0 ? (
+                <div className="space-y-4 py-2">
+                  <p className="text-sm text-muted">
+                    No published reviews yet — StaySpot still protects you with
+                    the same marketplace rules.
+                  </p>
+                  <TrustStrip />
+                </div>
+              ) : (
+                <ul className="space-y-3">
+                  {reviews.map((r) => (
+                    <li
+                      key={r.id}
+                      className="glass-panel-dense rounded-xl p-4"
+                    >
+                      <div className="mb-1 flex flex-wrap items-center gap-2">
+                        <Badge variant="success">{r.rating}/5</Badge>
+                        <span className="text-sm text-muted">
+                          {r.seekerDisplayName || 'Seeker'} ·{' '}
+                          {new Date(r.createdAtUtc).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <p className="text-sm text-ink">{r.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {user?.role === 'SEEKER' && (
+                <form
+                  className="grid gap-4 border-t border-[var(--color-glass-border)] pt-4"
+                  onSubmit={(e) => void sendReview(e)}
+                >
+                  <p className="text-sm text-muted">
+                    After you inquire or unlock contact, leave a short review.
+                    Ratings 3–5 publish immediately; 1–2 need admin moderation.
+                  </p>
+                  <Label>
+                    Rating
+                    <Select
+                      value={rating}
+                      onChange={(e) => setRating(Number(e.target.value))}
+                    >
+                      {[5, 4, 3, 2, 1].map((n) => (
+                        <option key={n} value={n}>
+                          {n}
+                        </option>
+                      ))}
+                    </Select>
+                  </Label>
+                  <Label required>
+                    Review
+                    <Textarea
+                      rows={3}
+                      required
+                      minLength={10}
+                      maxLength={1000}
+                      value={reviewBody}
+                      onChange={(e) => setReviewBody(e.target.value)}
+                      placeholder="Honest note for the next renter…"
+                    />
+                  </Label>
+                  <Button type="submit" loading={busy} className="w-fit">
+                    {busy ? 'Sending…' : 'Submit review'}
+                  </Button>
+                  {reviewOk && <Alert variant="success">{reviewOk}</Alert>}
+                </form>
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
 

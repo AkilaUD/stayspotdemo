@@ -195,7 +195,7 @@ export function InboxPage() {
         {items.map((item) => (
           <li key={item.id}>
             <Card>
-              <CardHeader className="flex-row items-start justify-between gap-3 space-y-0">
+              <CardHeader className="flex flex-col items-stretch gap-3 space-y-0 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0">
                   <CardTitle className="text-lg">{item.listingTitle}</CardTitle>
                   <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">

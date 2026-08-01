@@ -141,10 +141,9 @@ body {
   background-size: 180px 180px;
 }
 
-/* Keep content above the grain overlay without forcing position on
-   headers — `position: relative` would override sticky/fixed utilities. */
+/* Keep content above the grain overlay. Do not set position here —
+   that would override Tailwind fixed/sticky on drawers, tours, CTAs. */
 .page-canvas > *:not(header) {
-  position: relative;
   z-index: 1;
 }
 

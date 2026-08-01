@@ -91,6 +91,15 @@ export function AppShell({ children }: { children: ReactNode }) {
     return () => window.removeEventListener(OPEN_MOBILE_NAV_EVENT, onOpenMobileNav)
   }, [])
 
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open])
+
   if (isLanding) return <>{children}</>
 
   const roleLinks =
@@ -123,10 +132,10 @@ export function AppShell({ children }: { children: ReactNode }) {
       <OnboardingTour />
       <header className="glass-panel sticky top-0 z-40 border-b border-[var(--color-glass-border)]">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <button
               type="button"
-              className="rounded-xl p-2 text-ink hover:bg-[var(--color-glass-surface)] md:hidden"
+              className="rounded-xl p-2 text-ink hover:bg-[var(--color-glass-surface)] lg:hidden"
               aria-label="Open menu"
               onClick={() => setOpen(true)}
             >
@@ -140,12 +149,12 @@ export function AppShell({ children }: { children: ReactNode }) {
                 StaySpot
               </Link>
               {user && (
-                <p className="hidden text-[11px] text-muted md:block">
+                <p className="hidden text-[11px] text-muted xl:block">
                   Good to see you, {user.firstName}
                 </p>
               )}
             </div>
-            <nav className="ml-4 hidden items-center gap-1 md:flex" aria-label="App">
+            <nav className="ml-4 hidden items-center gap-1 lg:flex" aria-label="App">
               <NavItem to="/browse" icon={Search} tourId="nav-browse">
                 Browse
               </NavItem>
@@ -161,7 +170,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               ))}
             </nav>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <Button
               type="button"
               variant="ghost"
@@ -191,11 +200,11 @@ export function AppShell({ children }: { children: ReactNode }) {
               <span className="text-sm text-muted">…</span>
             ) : user ? (
               <>
-                <div className="hidden items-center gap-2 sm:flex">
+                <div className="hidden items-center gap-2 md:flex">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20 text-xs font-bold text-ink">
                     {user.initials}
                   </span>
-                  <div className="leading-tight">
+                  <div className="hidden leading-tight xl:block">
                     <p className="text-sm font-semibold">{user.displayName}</p>
                     <p className="text-[11px] uppercase tracking-wide text-muted">
                       {user.role}
@@ -204,7 +213,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 </div>
                 <Button type="button" variant="outline" size="sm" onClick={logout}>
                   <LogOut className="h-3.5 w-3.5" />
-                  Logout
+                  <span className="hidden sm:inline">Logout</span>
                 </Button>
               </>
             ) : (
@@ -216,7 +225,8 @@ export function AppShell({ children }: { children: ReactNode }) {
                 </Link>
                 <Link to="/register">
                   <Button type="button" size="sm">
-                    Create account
+                    <span className="hidden sm:inline">Create account</span>
+                    <span className="sm:hidden">Join</span>
                   </Button>
                 </Link>
               </>
@@ -226,7 +236,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed inset-0 z-50 lg:hidden">
           <button
             type="button"
             className="absolute inset-0 bg-ink/40"
@@ -237,7 +247,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             initial={reduceMotion ? false : { x: -280 }}
             animate={{ x: 0 }}
             transition={motionSafe(reduceMotion, pageTransition)}
-            className="glass-panel absolute inset-y-0 left-0 flex w-72 flex-col gap-2 border-r border-[var(--color-glass-border)] p-4"
+            className="glass-panel absolute inset-y-0 left-0 flex w-[min(100vw-3rem,18rem)] flex-col gap-2 border-r border-[var(--color-glass-border)] p-4"
           >
             <div className="mb-2 flex items-center justify-between">
               <span className="font-display text-lg font-bold text-ink">Menu</span>
@@ -283,7 +293,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         initial={reduceMotion ? false : 'hidden'}
         animate="show"
         transition={motionSafe(reduceMotion, pageTransition)}
-        className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8"
+        className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 pb-24 sm:px-6 sm:py-8 md:pb-8"
       >
         {children}
       </motion.div>

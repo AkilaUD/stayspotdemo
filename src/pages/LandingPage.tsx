@@ -140,7 +140,7 @@ export function LandingPage() {
 
       <main id="main">
         {/* Hero — search-first under fixed LandingNav */}
-        <section className="relative min-h-[88svh] overflow-hidden">
+        <section className="relative min-h-0 overflow-hidden sm:min-h-[88svh]">
           <SafeImage
             src={illustrations.heroBoarding}
             alt=""
@@ -157,7 +157,7 @@ export function LandingPage() {
               </div>
             }
           />
-          <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-center px-4 py-12 sm:px-6 sm:py-16">
+          <div className="relative mx-auto flex min-h-0 max-w-6xl flex-col justify-center px-4 py-12 sm:min-h-[88svh] sm:px-6 sm:py-16">
             <motion.div
               variants={staggerContainer}
               initial={reduceMotion ? false : 'hidden'}
@@ -407,7 +407,7 @@ export function LandingPage() {
                 I’m a landlord
               </button>
             </div>
-            <ol className="mt-10 grid gap-6 sm:grid-cols-3">
+            <ol className="mt-10 grid gap-6 md:grid-cols-3">
               {(track === 'renter'
                 ? [
                     {

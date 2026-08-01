@@ -302,7 +302,134 @@ export function MyAdsPage() {
       )}
 
       {items.length > 0 && (
-        <div className="glass-panel overflow-x-auto rounded-2xl">
+        <>
+          {/* Mobile / tablet card list */}
+          <div className="grid gap-3 md:hidden">
+            {items.map((ad) => (
+              <Card key={ad.id}>
+                <CardContent className="space-y-3 pt-5">
+                  <div className="flex items-start gap-3">
+                    <SafeImage
+                      src={ad.imageUrls?.[0]}
+                      alt=""
+                      className="h-16 w-20 shrink-0 rounded-lg object-cover ring-1 ring-line"
+                      fallback={
+                        <div className="flex h-16 w-20 shrink-0 items-center justify-center rounded-lg bg-surface text-[10px] text-muted ring-1 ring-line">
+                          No photo
+                        </div>
+                      }
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-medium text-ink">{ad.title}</h3>
+                        <Badge variant={statusBadgeVariant(ad.status)}>
+                          {statusLabel(ad.status)}
+                        </Badge>
+                      </div>
+                      <p className="mt-1 text-xs text-muted">
+                        <code className="rounded bg-surface px-1 py-0.5 ring-1 ring-line">
+                          {ad.publicCode}
+                        </code>
+                        <span className="mx-1.5">·</span>
+                        {ad.adType}
+                        <span className="mx-1.5">·</span>
+                        <span className="tabular-nums font-medium text-ink">
+                          {formatLkr(ad.priceLkrMonth)}
+                        </span>
+                      </p>
+                      <p className="mt-0.5 text-[11px] text-muted">
+                        Created {formatDate(ad.createdAtUtc)}
+                      </p>
+                      {ad.status === 'REJECTED' && (
+                        <p className="mt-1 text-xs text-warning">
+                          {ad.rejectionReasonCode || ad.rejectionNote
+                            ? `${ad.rejectionReasonCode ?? ''}${ad.rejectionNote ? ` — ${ad.rejectionNote}` : ''}`
+                            : 'Rejected (reason will appear after admin moderation).'}
+                        </p>
+                      )}
+                      {ad.archiveReason === 'RENTED' && ad.rentedAtUtc && (
+                        <p className="mt-1 flex items-center gap-1 text-xs text-muted">
+                          <Archive className="h-3 w-3" aria-hidden />
+                          Marked rented {formatDate(ad.rentedAtUtc)}
+                        </p>
+                      )}
+                      {ad.isBoosted && (
+                        <p className="mt-1 flex items-center gap-1 text-xs text-accent-text">
+                          <Rocket className="h-3 w-3" aria-hidden />
+                          Active {ad.activeBoostScope} boost
+                          {ad.boostEndsAtUtc
+                            ? ` until ${formatDate(ad.boostEndsAtUtc)}`
+                            : ''}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {(ad.status === 'APPROVED' ||
+                    (ad.status === 'ARCHIVED' &&
+                      ad.archiveReason === 'RENTED')) && (
+                    <div className="flex flex-wrap gap-2 border-t border-[var(--color-line)] pt-3">
+                      {ad.status === 'APPROVED' && (
+                        <>
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="outline"
+                            disabled={
+                              !!boostBusy ||
+                              !!subscription?.boostsFrozen ||
+                              (subscription?.boostCreditsDistrict ?? 0) <= 0
+                            }
+                            loading={boostBusy === `${ad.id}-DISTRICT`}
+                            onClick={() => void onBoost(ad.id, 'DISTRICT')}
+                          >
+                            Boost district
+                          </Button>
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="outline"
+                            disabled={
+                              !!boostBusy ||
+                              !!subscription?.boostsFrozen ||
+                              (subscription?.boostCreditsIsland ?? 0) <= 0
+                            }
+                            loading={boostBusy === `${ad.id}-ISLAND`}
+                            onClick={() => void onBoost(ad.id, 'ISLAND')}
+                          >
+                            Boost island
+                          </Button>
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="outline"
+                            disabled={!!rentBusy}
+                            loading={rentBusy === ad.id}
+                            onClick={() => void onMarkRented(ad.id)}
+                          >
+                            Mark rented
+                          </Button>
+                        </>
+                      )}
+                      {ad.status === 'ARCHIVED' &&
+                        ad.archiveReason === 'RENTED' && (
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => void downloadListingAgreement(ad.id)}
+                          >
+                            Agreement
+                          </Button>
+                        )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Desktop table */}
+          <div className="glass-panel hidden overflow-x-auto rounded-2xl md:block">
           <table className="w-full min-w-[880px] border-collapse text-left text-sm">
             <thead className="sticky top-0 z-10 bg-[var(--color-glass-surface)] backdrop-blur">
               <tr className="border-b border-[var(--color-glass-border)] text-xs uppercase tracking-wide text-muted">
@@ -457,7 +584,8 @@ export function MyAdsPage() {
               ))}
             </tbody>
           </table>
-        </div>
+          </div>
+        </>
       )}
     </MotionFade>
   )

@@ -172,8 +172,9 @@ export function AdminModerationPage() {
               <p className="text-sm tabular-nums text-muted">
                 {item.city}, {item.district} · {formatLkr(item.priceLkrMonth)}/mo
               </p>
-              <p className="text-sm text-muted">
-                By {item.advertiserDisplayName} ({item.advertiserEmail})
+              <p className="text-sm text-muted break-words">
+                By {item.advertiserDisplayName}{' '}
+                <span className="break-all">({item.advertiserEmail})</span>
               </p>
             </CardHeader>
             <CardContent className="space-y-3 p-4">

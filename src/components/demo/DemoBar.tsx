@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { DEMO_PASSWORD, demoPersonas, tokenForUser } from '../../demo/mockApi'
 import { markSeedToursDone, storageKey } from '../../demo/onboarding'
 import { resetStore } from '../../demo/store'
@@ -15,6 +16,8 @@ function currentDemoUserId(): string | null {
  */
 export function DemoBar() {
   const [open, setOpen] = useState(true)
+  const { pathname } = useLocation()
+  const onLanding = pathname === '/'
 
   useEffect(() => {
     markSeedToursDone()
@@ -55,7 +58,11 @@ export function DemoBar() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-20 right-3 z-[100] flex flex-col items-end gap-2 md:bottom-3"
+      className={
+        onLanding
+          ? 'pointer-events-none fixed bottom-20 right-3 z-[100] flex flex-col items-end gap-2 md:bottom-3'
+          : 'pointer-events-none fixed bottom-3 right-3 z-[100] flex flex-col items-end gap-2'
+      }
       aria-label="StaySpot demo controls"
     >
       {open && (
