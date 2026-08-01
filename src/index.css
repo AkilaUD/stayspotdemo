@@ -8,7 +8,7 @@
   --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* Lived-in warmth — golden-hour boarding marketplace */
-  --color-base: #f6f0e4;
+  /* Do not add --color-base: it steals Tailwind's text-base font-size utility */
   --color-glass-surface: rgba(255, 252, 246, 0.88);
   --color-glass-border: rgba(19, 42, 34, 0.16);
   --color-accent: #e8b168;
@@ -49,14 +49,13 @@
   font-family: var(--font-sans);
   line-height: 1.5;
   color: var(--color-ink);
-  background: var(--color-base);
+  background: var(--color-surface);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
 .dark {
-  --color-base: #0c1411;
   --color-glass-surface: rgba(255, 255, 255, 0.16);
   --color-glass-border: rgba(243, 241, 235, 0.22);
   --color-accent: #e8b168;
@@ -102,7 +101,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--color-base);
+  background-color: var(--color-surface);
   background-image:
     radial-gradient(ellipse 80% 50% at 0% -10%, var(--warm-wash), transparent 55%),
     radial-gradient(ellipse 70% 45% at 100% 0%, var(--teal-wash), transparent 50%),
@@ -152,7 +151,7 @@ body {
 .band-warm {
   background:
     radial-gradient(ellipse 90% 80% at 20% 0%, var(--warm-wash), transparent 60%),
-    color-mix(in srgb, var(--color-base) 92%, var(--color-accent));
+    color-mix(in srgb, var(--color-surface) 92%, var(--color-accent));
 }
 
 .band-deep {

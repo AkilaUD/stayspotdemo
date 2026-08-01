@@ -19,7 +19,7 @@ npm run preview
 
 ## Personas
 
-Use the teal **Demo** bar (top) to switch instantly, or log in on `/login`.
+Use the floating **Demo** chip (bottom-right; collapsed by default) to switch personas, or log in on `/login`. Homepage, nav, and all pages use the **same UI components** as production.
 
 | Persona | Email | Password |
 |---------|-------|----------|
@@ -48,7 +48,7 @@ Use the teal **Demo** bar (top) to switch instantly, or log in on `/login`.
 | `/admin/analytics` | Live counts from demo store |
 | `/admin/postings` | Approve / reject queue |
 
-Also: theme toggle, AppShell role nav, onboarding tour (**Tour** on the demo bar to replay; not auto-shown per persona).
+Also: theme toggle, AppShell role nav, onboarding (use **Tour** on the demo bar). Shared UI components match production byte-for-byte; only the mock API and floating DemoBar differ.
 
 ## Theme
 

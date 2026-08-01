@@ -18,18 +18,12 @@ import {
   useState,
   type CSSProperties,
 } from 'react'
-import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
-import {
-  consumeTourReplay,
-  markTourDone,
-} from '../demo/onboarding'
 import { Button } from './ui/button'
 
 const OPEN_MOBILE_NAV_EVENT = 'stayspot:open-mobile-nav'
 const PAD = 8
-const DEMO_BAR_OFFSET = 40
 
 type TourStep = {
   title: string
@@ -41,6 +35,10 @@ type TourStep = {
 }
 
 type Rect = { top: number; left: number; width: number; height: number }
+
+function storageKey(userId: string) {
+  return `stayspot.onboarding.v1.${userId}`
+}
 
 function stepsForRole(role: string): TourStep[] {
   switch (role.toUpperCase()) {
@@ -173,11 +171,15 @@ export function OnboardingTour() {
       setOpen(false)
       return
     }
-    // Demo: only open when DemoBar "Tour" arms a one-shot replay
-    if (consumeTourReplay(user.id)) {
-      setStepIndex(0)
-      setOpen(true)
-    } else {
+    try {
+      const done = localStorage.getItem(storageKey(user.id))
+      if (!done) {
+        setStepIndex(0)
+        setOpen(true)
+      } else {
+        setOpen(false)
+      }
+    } catch {
       setOpen(false)
     }
   }, [loading, user])
@@ -215,9 +217,23 @@ export function OnboardingTour() {
     }
   }, [open, refreshRect])
 
+  useEffect(() => {
+    if (!open || !rect) return
+    const el = findVisibleTourTarget(steps[stepIndex]?.target ?? '')
+    if (!el) return
+    el.classList.add('ring-2', 'ring-accent', 'relative', 'z-[70]')
+    return () => {
+      el.classList.remove('ring-2', 'ring-accent', 'relative', 'z-[70]')
+    }
+  }, [open, rect, stepIndex, steps])
+
   function complete() {
     if (!user) return
-    markTourDone(user.id)
+    try {
+      localStorage.setItem(storageKey(user.id), '1')
+    } catch {
+      /* ignore quota */
+    }
     setOpen(false)
   }
 
@@ -228,9 +244,9 @@ export function OnboardingTour() {
   const isLast = stepIndex >= steps.length - 1
   const tipStyle = tipPosition(rect)
 
-  return createPortal(
+  return (
     <div
-      className="fixed inset-0 z-[90]"
+      className="fixed inset-0 z-[60]"
       role="dialog"
       aria-modal="true"
       aria-labelledby="onboarding-title"
@@ -244,26 +260,28 @@ export function OnboardingTour() {
               left: rect.left,
               width: rect.width,
               height: rect.height,
+              boxShadow: '0 0 0 9999px rgba(19, 42, 34, 0.45)',
             }}
             aria-hidden
           />
+          {/* Clickable dim regions — hole stays interactive for the nav target */}
           <button
             type="button"
-            className="absolute left-0 right-0 top-0 bg-ink/45"
+            className="absolute left-0 right-0 top-0 bg-transparent"
             style={{ height: Math.max(0, rect.top) }}
             aria-label="Dismiss tutorial"
             onClick={complete}
           />
           <button
             type="button"
-            className="absolute left-0 right-0 bottom-0 bg-ink/45"
+            className="absolute left-0 right-0 bottom-0 bg-transparent"
             style={{ top: rect.top + rect.height }}
             aria-label="Dismiss tutorial"
             onClick={complete}
           />
           <button
             type="button"
-            className="absolute left-0 bg-ink/45"
+            className="absolute left-0 bg-transparent"
             style={{
               top: rect.top,
               width: Math.max(0, rect.left),
@@ -274,7 +292,7 @@ export function OnboardingTour() {
           />
           <button
             type="button"
-            className="absolute right-0 bg-ink/45"
+            className="absolute right-0 bg-transparent"
             style={{
               top: rect.top,
               left: rect.left + rect.width,
@@ -294,7 +312,7 @@ export function OnboardingTour() {
       )}
 
       <div
-        className="absolute z-[1] w-[min(100%-2rem,22rem)] rounded-2xl border border-[var(--color-line)] bg-base p-5 shadow-[var(--glass-shadow)] isolation-isolate"
+        className="glass-panel absolute z-[80] w-[min(100%-2rem,22rem)] rounded-2xl border border-[var(--color-glass-border)] p-5 shadow-md"
         style={tipStyle}
       >
         <div className="mb-3 flex items-start gap-3">
@@ -352,8 +370,7 @@ export function OnboardingTour() {
           </div>
         </div>
       </div>
-    </div>,
-    document.body,
+    </div>
   )
 }
 
@@ -362,7 +379,6 @@ function tipPosition(rect: Rect | null): CSSProperties {
   const vh = typeof window !== 'undefined' ? window.innerHeight : 800
   const tipW = Math.min(vw - 32, 352)
   const tipH = 220
-  const minTop = DEMO_BAR_OFFSET + 8
 
   if (!rect) {
     return {
@@ -376,13 +392,10 @@ function tipPosition(rect: Rect | null): CSSProperties {
   const left = Math.min(Math.max(16, rect.left), vw - tipW - 16)
 
   if (top + tipH > vh - 16) {
-    top = Math.max(minTop, rect.top - tipH - 12)
+    top = Math.max(16, rect.top - tipH - 12)
   }
-  if (top < minTop) {
-    top = Math.max(
-      minTop,
-      Math.min(rect.top + rect.height + 12, vh - tipH - 16),
-    )
+  if (top < 16) {
+    top = Math.max(16, Math.min(rect.top + rect.height + 12, vh - tipH - 16))
   }
 
   return { top, left, bottom: 'auto' }

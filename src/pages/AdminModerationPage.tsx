@@ -158,7 +158,7 @@ export function AdminModerationPage() {
           <Card key={item.id} dense>
             <CardHeader className="gap-1 p-4 pb-0">
               <div className="mb-1 flex flex-wrap items-center gap-2">
-                <code className="rounded bg-base px-1.5 py-0.5 text-xs ring-1 ring-line">
+                <code className="rounded bg-surface px-1.5 py-0.5 text-xs ring-1 ring-line">
                   {item.publicCode}
                 </code>
                 <Badge variant={item.adType === 'LEASE' ? 'info' : 'default'}>
@@ -191,7 +191,7 @@ export function AdminModerationPage() {
                       alt=""
                       className="h-20 w-28 rounded-lg object-cover ring-1 ring-line"
                       fallback={
-                        <div className="flex h-20 w-28 items-center justify-center rounded-lg bg-base text-xs text-muted ring-1 ring-line">
+                        <div className="flex h-20 w-28 items-center justify-center rounded-lg bg-surface text-xs text-muted ring-1 ring-line">
                           Broken
                         </div>
                       }

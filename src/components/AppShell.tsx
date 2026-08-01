@@ -121,7 +121,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="page-canvas min-h-screen text-ink">
       <OnboardingTour />
-      <header className="glass-panel sticky top-10 z-40 border-b border-[var(--color-glass-border)]">
+      <header className="glass-panel sticky top-0 z-40 border-b border-[var(--color-glass-border)]">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
           <div className="flex items-center gap-3">
             <button

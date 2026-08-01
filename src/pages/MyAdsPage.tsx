@@ -329,7 +329,7 @@ export function MyAdsPage() {
                         alt=""
                         className="h-12 w-16 shrink-0 rounded-lg object-cover ring-1 ring-line"
                         fallback={
-                          <div className="flex h-12 w-16 shrink-0 items-center justify-center rounded-lg bg-base text-[10px] text-muted ring-1 ring-line">
+                          <div className="flex h-12 w-16 shrink-0 items-center justify-center rounded-lg bg-surface text-[10px] text-muted ring-1 ring-line">
                             No photo
                           </div>
                         }
@@ -362,7 +362,7 @@ export function MyAdsPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <code className="rounded bg-base px-1.5 py-0.5 text-xs ring-1 ring-line">
+                    <code className="rounded bg-surface px-1.5 py-0.5 text-xs ring-1 ring-line">
                       {ad.publicCode}
                     </code>
                   </td>

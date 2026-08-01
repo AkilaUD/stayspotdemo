@@ -233,7 +233,7 @@ export function LandingPage() {
               loading="lazy"
               className="w-full rounded-3xl object-cover shadow-md ring-1 ring-[var(--color-glass-border)]"
               fallback={
-                <div className="aspect-video w-full rounded-3xl bg-gradient-to-br from-accent/20 to-base ring-1 ring-line" />
+                <div className="aspect-video w-full rounded-3xl bg-gradient-to-br from-accent/20 to-surface ring-1 ring-line" />
               }
             />
           </div>
@@ -550,7 +550,7 @@ export function LandingPage() {
                     className={`mt-5 rounded-lg px-4 py-2.5 text-center text-sm font-bold no-underline ${
                       recommended
                         ? 'bg-accent text-on-accent'
-                        : 'bg-base text-ink ring-1 ring-line'
+                        : 'bg-surface text-ink ring-1 ring-line'
                     }`}
                   >
                     {plan.isFree ? 'Start free' : 'View plans'}
@@ -678,7 +678,7 @@ export function LandingPage() {
 
       <footer className="band-deep relative overflow-hidden border-t border-white/10 text-white">
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[var(--color-base)]/30 to-transparent opacity-40"
+          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[var(--color-surface)]/30 to-transparent opacity-40"
           aria-hidden
         />
         <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3 sm:px-6">

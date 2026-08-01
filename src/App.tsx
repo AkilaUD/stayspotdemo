@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth } from './AuthContext'
 import { ThemeProvider } from './ThemeContext'
 import { AppShell } from './components/AppShell'
 import { DemoBar } from './components/demo/DemoBar'
-import { markSeedToursDone } from './demo/onboarding'
 import { AdminAnalyticsPage } from './pages/AdminAnalyticsPage'
 import { AdminModerationPage } from './pages/AdminModerationPage'
 import {
@@ -59,17 +57,11 @@ function AppRoutes() {
 }
 
 export default function App() {
-  useEffect(() => {
-    markSeedToursDone()
-  }, [])
-
   return (
     <ThemeProvider>
       <AuthProvider>
+        <AppRoutes />
         <DemoBar />
-        <div className="pt-10">
-          <AppRoutes />
-        </div>
       </AuthProvider>
     </ThemeProvider>
   )

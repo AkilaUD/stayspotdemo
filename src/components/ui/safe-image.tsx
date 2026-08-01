@@ -42,7 +42,7 @@ export function SafeImage({
         {fallback ?? (
           <div
             className={cn(
-              'flex items-center justify-center bg-base text-muted ring-1 ring-line',
+              'flex items-center justify-center bg-surface text-muted ring-1 ring-line',
               className,
             )}
             role="img"
@@ -126,7 +126,7 @@ export function ListingCover({
   return (
     <div
       className={cn(
-        'relative aspect-[16/10] w-full overflow-hidden bg-base',
+        'relative aspect-[16/10] w-full overflow-hidden bg-surface',
         radius,
         className,
       )}
@@ -139,7 +139,7 @@ export function ListingCover({
         overlay={overlay}
         className="h-full w-full object-cover"
         fallback={
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-accent/10 to-base">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-accent/10 to-surface">
             <ImageOff className="h-10 w-10 text-muted" aria-hidden />
           </div>
         }

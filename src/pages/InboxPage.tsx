@@ -199,7 +199,7 @@ export function InboxPage() {
                 <div className="min-w-0">
                   <CardTitle className="text-lg">{item.listingTitle}</CardTitle>
                   <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
-                    <code className="rounded bg-base px-1.5 py-0.5 text-xs ring-1 ring-line">
+                    <code className="rounded bg-surface px-1.5 py-0.5 text-xs ring-1 ring-line">
                       {item.listingPublicCode}
                     </code>
                     <span>

@@ -331,7 +331,7 @@ export function BrowsePage() {
       <div className="lg:grid lg:grid-cols-[240px_1fr] lg:gap-8">
         {/* Desktop collapsible glass filter sidebar */}
         <aside className="mb-6 hidden lg:block">
-          <div className="glass-panel sticky top-28 rounded-2xl p-4">
+          <div className="glass-panel sticky top-20 rounded-2xl p-4">
             <button
               type="button"
               className="mb-3 flex w-full items-center justify-between text-sm font-semibold text-ink"

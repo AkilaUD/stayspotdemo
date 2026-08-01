@@ -269,7 +269,7 @@ export function ListingDetailPage() {
                       overlay="glass"
                       className="h-16 w-24 rounded-lg ring-1 ring-[var(--color-glass-border)]"
                       fallback={
-                        <div className="h-16 w-24 shrink-0 rounded-lg bg-base ring-1 ring-line" />
+                        <div className="h-16 w-24 shrink-0 rounded-lg bg-surface ring-1 ring-line" />
                       }
                     />
                   </button>
@@ -289,12 +289,12 @@ export function ListingDetailPage() {
                   {listing.bedrooms} bed · {listing.bathrooms} bath
                 </span>
                 {listing.furniture && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-base px-2.5 py-0.5 ring-1 ring-line">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-0.5 ring-1 ring-line">
                     {listing.furniture}
                   </span>
                 )}
                 {listing.parking && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-base px-2.5 py-0.5 ring-1 ring-line">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-0.5 ring-1 ring-line">
                     Parking: {listing.parking}
                   </span>
                 )}
@@ -391,7 +391,7 @@ export function ListingDetailPage() {
           </Card>
         </div>
 
-        <div className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+        <div className="space-y-6 lg:sticky lg:top-20 lg:self-start">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -583,7 +583,7 @@ export function ListingDetailPage() {
           >
             <button
               type="button"
-              className="absolute right-3 top-3 z-10 rounded-full bg-base/80 p-2 text-ink ring-1 ring-line"
+              className="absolute right-3 top-3 z-10 rounded-full bg-surface/80 p-2 text-ink ring-1 ring-line"
               onClick={() => setLightboxSrc(null)}
               aria-label="Close"
             >
@@ -595,7 +595,7 @@ export function ListingDetailPage() {
               overlay="glass"
               className="max-h-[85vh] w-full rounded-xl object-contain"
               fallback={
-                <div className="flex h-64 w-full items-center justify-center bg-base text-muted">
+                <div className="flex h-64 w-full items-center justify-center bg-surface text-muted">
                   Image unavailable
                 </div>
               }
